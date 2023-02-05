@@ -1,16 +1,16 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from .views import TodoViewSet
+from .views import TodoCreate, TodoDelete
 
-router_v1 = DefaultRouter()
+router = DefaultRouter()
 
-router_v1.register('create', TodoViewSet),
-router_v1.register('get/(?P<uuid>\\d+)', TodoViewSet)
-router_v1.register('all', TodoViewSet),
-router_v1.register('list/(?P<created>\\d+)', TodoViewSet),
-router_v1.register('delite/(?P<uuid>\\d+)', TodoViewSet)
+router.register('create', TodoCreate),
+router.register('get/(?P<uuid>\\d+)', TodoCreate)
+router.register('all', TodoCreate),
+router.register('list/(?P<created>\\d+)', TodoCreate),
+router.register('delete/(?P<uuid>\\d+)', TodoDelete)
 
 urlpatterns = [ 
-    path('record/', include(router_v1.urls)),
+    path('record/', include(router.urls)),
 ]
